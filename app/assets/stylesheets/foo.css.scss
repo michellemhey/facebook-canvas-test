@@ -1,0 +1,30 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  width:750px;
+}
+
+.fb_params {
+  width: 700px;
+  height: 100px;
+}
+
+.sidebar {
+  float: left;
+  width: 200px;
+}
+
+.main {
+  width: 540px;
+  border: 2px dotted #333;
+  height: 300px;
+  margin-left: 200px;
+
+  .time {
+    padding: 10px;
+  }
+}
+
+.info {
+  margin-top: 50px;
+  font-size: 80%;
+}

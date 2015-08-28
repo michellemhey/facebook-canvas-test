@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Canvasapp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title>FBCanvasRails</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <script type="text/javascript">
+    // If our app is not loaded in a canvas, refresh and load inside a canvas
+    if (window == window.top) {
+      window.top.location = "<%= facebook_iframed_url %>";
+    }
+    // This is where we store the session data
+    window.Application = {};
+    window.Application.meta = <%= raw page_metadata.to_json %>;
+  </script>
 </head>
 <body>
 
-<%= yield %>
+  <h1>Welcome!</h1>
+  <h2>Main window loaded at <%= Time.now.to_s %>.</h2>
+  <p>Don't forget to try clicking the links in Internet Explorer <= 9. A full reload of the Facebook IFrame will occur for each page. In smart browsers, PushState is used instead.</p>
+  <p>Also, visit a few pages and try the back button, it should work as expected in any browser.</p>
 
+  <% unless logged_in? %>
+    <p><a href="/auth/facebook">LOGIN WITH FACEBOOK</a></p>
+  <% end %>
+
+  <div class="container">
+    <div class="sidebar">
+      <a href="/page1" class="cjax">Page 1</a>
+      <br/>
+      <a href="/page2" class="cjax">Page 2</a>
+      <br/>
+      <a href="/page3" class="cjax">Page 3</a>
+    </div>
+
+    <div class="main">
+      <%= yield %>
+    </div>
+  </div>
+
+  <div class="info">
+    <p>
+      request.env['facebook.params']:
+      <textarea class='fb_params'><%= request.env['facebook.params'].to_yaml %></textarea>
+    </p>
+    <p>
+      request.env['facebook.signed_request']:
+      <textarea class='fb_params'><%= request.env['facebook.signed_request'].to_yaml %></textarea>
+    </p>
+  </div>
+
+  <script type="text/javascript">
+    // Enable CJAX browsing (ie: PushState on smart browsers, full top redirects for IE.)
+    initCJAX(window);
+  </script>
 </body>
 </html>

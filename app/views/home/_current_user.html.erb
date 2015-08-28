@@ -1,0 +1,5 @@
+<% if logged_in? %>
+  <p>Logged in (<%= get_session[:user][:uid] %>) at <%= get_session[:user][:logged_in_at] %></p>
+<% else %>
+  <p>Not logged in!</p>
+<% end %>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FBCanvasRails</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="main">
+      <%= yield %>
+      <p class="time" style="background-color: #<%= "%06x" % (rand * 0xffffff) %>">Fetched with CJAX at <%= Time.now.to_s %>.</p>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // Put the session data in a Javascript variable
+    Application.meta = <%= raw page_metadata.to_json %>;
+    // Trigger an event that can be handled however you want after a page is loaded with CJAX
+    $(document).trigger("cjax:page_loaded", { page_id: '<%= @page_id %>' });
+  </script>
+</body>
+</html>

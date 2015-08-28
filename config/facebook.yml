@@ -1,0 +1,13 @@
+development:
+  app_id: 749272781868959
+  secret_key: 0a33542f2e08f0c00af5c18f2f45ae74
+  app_url: //facebook-canvas.herokuapp.com/
+  fb_url: https://apps.facebook.com/749272781868959
+  channel_url: //facebook-canvas.herokuapp.com/facebook/channel
+
+production:
+  app_id: 749272781868959
+  secret_key: 0a33542f2e08f0c00af5c18f2f45ae74
+  app_url: //facebook-canvas.herokuapp.com/
+  fb_url: https://apps.facebook.com/749272781868959
+  channel_url: //facebook-canvas.herokuapp.com/facebook/channel
